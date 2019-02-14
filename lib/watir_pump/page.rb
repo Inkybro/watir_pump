@@ -42,6 +42,10 @@ module WatirPump
         @uri
       end
 
+      def subdomain(subdomain = nil)
+        @subdomain ||= subdomain
+      end
+
       # Returns singleton instance of current Page
       #
       # @return [Page]
@@ -54,7 +58,9 @@ module WatirPump
     #
     # @return [String]
     def url_template
-      WatirPump.config.base_url + self.class.uri
+      base_url = URI(WatirPump.config.base_url)
+      base_url.host = "#{self.class.subdomain}.#{base_url.host}" unless self.class.subdomain.nil?
+      base_url.to_s + self.class.uri
     end
 
     # Opens the page in the browser and executes passed block in the scope
