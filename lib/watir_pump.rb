@@ -2,6 +2,7 @@
 
 require 'active_support/configurable'
 require 'watir'
+require 'nokogiri'
 
 require_relative 'watir_pump/page'
 

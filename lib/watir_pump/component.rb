@@ -374,6 +374,12 @@ module WatirPump
     end
     alias node root
 
+    # Reference to nokogiri document for root
+    # @return [Nokogiri::HTML::Document]
+    def doc
+      @doc ||= Nokogiri::HTML(root.html)
+    end
+
     # Invokes element writer methods of given names with given values
     # @example
     #   class MyPage < WatirPump::Page
